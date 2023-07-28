@@ -1,0 +1,23 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--Added the entity Credit-->
+    <changeSet id="20230728140000" author="mimoun">
+        <createTable tableName="credit">
+            <column name="id" type="UUID" autoIncrement="false">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="payment" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_payment_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Populate the entity Credit-->
+    <changeSet id="20230728141000" author="mimoun">
+        <loadData file="init.csv" tableName="credit" relativeToChangelogFile="true"/>
+    </changeSet>
+</databaseChangeLog>
